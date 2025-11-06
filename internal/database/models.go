@@ -16,7 +16,7 @@ type ArticleDB struct {
 }
 
 type ArticleJSON struct {
-	ID          string    `json:"id"`
+	ID          string
 	Title       string    `json:"title"`
 	Description string    `json:"description"`
 	Tag         string    `json:"tage"`
@@ -24,13 +24,25 @@ type ArticleJSON struct {
 	UpdatedAt   time.Time `json:"updated_at"`
 }
 
-func FromJSONToDB(article *ArticleJSON) (*ArticleDB, error) {
-	id, err := primitive.ObjectIDFromHex(article.ID)
-	if err != nil {
-		return nil, err
-	}
+type NewArticle struct {
+	Title       string `json:"title"`
+	Description string `json:"description"`
+	Tag         string `json:"tage"`
+}
+
+func CreateNewArticle(a *NewArticle) *ArticleDB {
 	return &ArticleDB{
-		ID:          id,
+		ID:          primitive.NewObjectID(),
+		Title:       a.Title,
+		Description: a.Description,
+		Tag:         a.Tag,
+		CreatedAt:   time.Now(),
+		UpdatedAt:   time.Now(),
+	}
+}
+
+func FromJSONToDB(id string, article *ArticleJSON) (*ArticleDB, error) {
+	return &ArticleDB{
 		Title:       article.Title,
 		Description: article.Description,
 		Tag:         article.Tag,
