@@ -1,5 +1,6 @@
 mongo:
   uri: mongodb://localhost:27017/
   db_name: blog
+  coll_name: "articles"
 app:
   port: 8080

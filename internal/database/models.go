@@ -10,7 +10,7 @@ type ArticleDB struct {
 	ID          primitive.ObjectID `bson:"_id"`
 	Title       string             `bson:"title"`
 	Description string             `bson:"description"`
-	Tag         string             `bson:"tage"`
+	Tag         string             `bson:"tag"`
 	CreatedAt   time.Time          `bson:"created_at"`
 	UpdatedAt   time.Time          `bson:"updated_at"`
 }
@@ -19,7 +19,7 @@ type ArticleJSON struct {
 	ID          string
 	Title       string    `json:"title"`
 	Description string    `json:"description"`
-	Tag         string    `json:"tage"`
+	Tag         string    `json:"tag"`
 	CreatedAt   time.Time `json:"created_at"`
 	UpdatedAt   time.Time `json:"updated_at"`
 }
@@ -27,7 +27,7 @@ type ArticleJSON struct {
 type NewArticle struct {
 	Title       string `json:"title"`
 	Description string `json:"description"`
-	Tag         string `json:"tage"`
+	Tag         string `json:"tag"`
 }
 
 func CreateNewArticle(a *NewArticle) *ArticleDB {
